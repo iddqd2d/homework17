@@ -1,43 +1,28 @@
 package com.firstspring.model;
 
+import com.firstspring.interfaces.Car;
 import com.firstspring.interfaces.Driver;
 import com.firstspring.interfaces.Engine;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Log4j
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@ToString
 @Component
-public class Car {
-    @Autowired
+@AllArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class CarVaz implements Car {
+    @Autowired(required = true)
     private Engine engine;
-    @Autowired
+    @Autowired(required = true)
     private Driver driver;
-
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public Car modelSingleton(){
-        return new Car();
-    }
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public Car modelPrototype(){
-        return new Car();
-    }
 
     public void action() {
         driver.name();
