@@ -19,7 +19,7 @@ public class Main {
             carPrototype = context.getBean("carZaz", CarZaz.class);
             log.info(carPrototype.getDriver());
         }catch (Exception ex){
-            log.error(ex);
+            log.error(ex.getMessage());
         }
     }
 }
